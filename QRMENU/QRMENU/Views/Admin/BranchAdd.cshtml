@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "BranchAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form class="form-group" method="post" action="/Admin/BranchAdd" enctype="multipart/form-data" style="margin-top:25px;">
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col">
+            <label>Şube Adı</label>
+            <input type="text" class="form-control" name="sube_adi" required="" maxlength="30" />
+        </div>
+        <div class="col">
+            <label>Şube Adresi</label>
+            <input type="text" class="form-control" name="sube_adres" required="" />
+        </div>
+    </div>
+    
+    
+
+    <div style="margin-top:15px">
+        <label>Şube Telefonu</label>
+        <input type="text" class="form-control" name="sube_tel" required="" maxlength="11" />
+    </div>
+    <div class="form-group">
+        <label>Şube Masa</label>
+        <input type="text" name="sube_masa" class="form-control" required="" />
+    </div>
+    <div class="form-group">
+        <label>Şube Resmi</label>
+        <input type="file" name="branchimg" class="form-control" required="" />
+    </div>
+    <div style="margin-top:15px">
+        <button type="submit" class="btn btn-info">ŞUBE EKLE</button>
+    </div>
+</form>
+
+

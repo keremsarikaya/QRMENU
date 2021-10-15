@@ -1,0 +1,41 @@
+﻿
+@model QRMENU.Models.urunler
+
+@{
+    ViewBag.Title = "ProdAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form class="form-group" action="/Admin/ProdAdd" method="post" enctype="multipart/form-data" style="margin-top:25px;">
+        @Html.AntiForgeryToken()
+        <div>
+            <label>Ürün Adı</label>
+            <input type="text" class="form-control" name="urunadi" required="" maxlength="30" />
+        </div>
+        <div style="margin-top:15px">
+            <label>Ürün Fiyatı</label>
+            <input type="text" class="form-control" name="urunfiyat" required="" />
+        </div>
+
+        <div style="margin-top:15px">
+            <label>Ürün Açıklaması</label>
+            <input type="text" class="form-control" name="urunaciklama" required="" />
+        </div>
+        <div style="margin-top:15px">
+            <label>Kategori Seçiniz</label>
+            @Html.DropDownListFor(m => m.kategoriler.katid, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        </div>
+
+        <div style="margin-top:15px">
+            <label>Şube Seçiniz</label>
+            @Html.DropDownListFor(m => m.restaurant.sube_id, (List<SelectListItem>)ViewBag.res, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Ürün Resmi</label>
+            <input id="urunresim" type="file" name="urunresim" class="form-control" required=""/>
+        </div>
+        <div style="margin-top:15px">
+            <button type="submit" class="btn btn-info">ÜRÜN EKLE</button>
+        </div>
+    </form>
+

@@ -1,0 +1,86 @@
+﻿
+@using QRMENU.Models
+@model List<restaurant>
+
+@{
+    ViewBag.Title = "Branches";
+    Layout = "~/Views/Shared/_Panel.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h1 class="mt-4">Teklifler</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Teklif İçin Başvuranlar</li>
+    </ol>
+    @*<div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Ödeme Yapanlar</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i>25</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">Ödeme Yapmayanlar</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Şube Adı</th>
+                            <th>Şube Adresi</th>
+                            <th>Şube Telefonu</th>
+                            <th>Şube Masa</th>
+                            <th>Sahibi</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.sube_id</td>
+                                <td>@item.sube_adi</td>
+                                <td>@item.sube_adres</td>
+                                <td>@item.sube_tel</td>
+                                <td>@item.sube_masa</td>
+                                <td>@item.admin.isim</td>
+                                <td><a href="/branchdel/@item.sube_id" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (TempData["branchdel"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Şube Silindi',
+                showConfirmButton: false,
+                timer: 1500
+            });
+    </script>
+}

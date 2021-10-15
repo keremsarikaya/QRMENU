@@ -1,0 +1,49 @@
+﻿
+@using QRMENU.Models
+@model List<urunler>
+
+@{
+    ViewBag.Title = "CatProd";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<section class="section-lunch bgwhite">
+
+
+    <div class="container">
+        
+        <div class="row p-t-108 p-b-70">
+            <div class="col-md-8 col-lg-6 m-l-r-auto">
+                <!-- Block3 -->
+                @foreach (var item in Model)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#">
+                                <img src="~/resimler/@item.resim.First().resimad" alt="IMG-MENU">
+                            </a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.urunadi
+                            </a>
+
+                            <span class="txt23">
+                                @item.urunaciklama
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.urunfiyat ₺
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+

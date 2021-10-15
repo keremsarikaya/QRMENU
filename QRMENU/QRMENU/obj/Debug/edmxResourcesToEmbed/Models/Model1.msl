@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="qrpandemenu_ModelStoreContainer" CdmEntityContainer="qrpandemenu_Entities">
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="user_pay" ColumnName="user_pay" />
+          <ScalarProperty Name="user_branch" ColumnName="user_branch" />
+          <ScalarProperty Name="soyisim" ColumnName="soyisim" />
+          <ScalarProperty Name="isim" ColumnName="isim" />
+          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+          <ScalarProperty Name="user_tel" ColumnName="user_tel" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ceolar">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.ceolar">
+        <MappingFragment StoreEntitySet="ceolar">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kategori_resim">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.kategori_resim">
+        <MappingFragment StoreEntitySet="kategori_resim">
+          <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+          <ScalarProperty Name="k_durum" ColumnName="k_durum" />
+          <ScalarProperty Name="k_resimad" ColumnName="k_resimad" />
+          <ScalarProperty Name="k_resim_id" ColumnName="k_resim_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kategoriler">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.kategoriler">
+        <MappingFragment StoreEntitySet="kategoriler">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="rest_id" ColumnName="rest_id" />
+          <ScalarProperty Name="katadi" ColumnName="katadi" />
+          <ScalarProperty Name="katid" ColumnName="katid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resim">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.resim">
+        <MappingFragment StoreEntitySet="resim">
+          <ScalarProperty Name="urunid" ColumnName="urunid" />
+          <ScalarProperty Name="durum" ColumnName="durum" />
+          <ScalarProperty Name="resimad" ColumnName="resimad" />
+          <ScalarProperty Name="resimid" ColumnName="resimid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="restaurant">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.restaurant">
+        <MappingFragment StoreEntitySet="restaurant">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="sube_masa" ColumnName="sube_masa" />
+          <ScalarProperty Name="sube_tel" ColumnName="sube_tel" />
+          <ScalarProperty Name="sube_adres" ColumnName="sube_adres" />
+          <ScalarProperty Name="sube_adi" ColumnName="sube_adi" />
+          <ScalarProperty Name="sube_id" ColumnName="sube_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subeLogo">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.subeLogo">
+        <MappingFragment StoreEntitySet="subeLogo">
+          <ScalarProperty Name="subeid" ColumnName="subeid" />
+          <ScalarProperty Name="durum" ColumnName="durum" />
+          <ScalarProperty Name="logoad" ColumnName="logoad" />
+          <ScalarProperty Name="logoid" ColumnName="logoid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="urunler">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.urunler">
+        <MappingFragment StoreEntitySet="urunler">
+          <ScalarProperty Name="use_id" ColumnName="use_id" />
+          <ScalarProperty Name="rest_id" ColumnName="rest_id" />
+          <ScalarProperty Name="kategoriid" ColumnName="kategoriid" />
+          <ScalarProperty Name="urunaciklama" ColumnName="urunaciklama" />
+          <ScalarProperty Name="urunfiyat" ColumnName="urunfiyat" />
+          <ScalarProperty Name="urunadi" ColumnName="urunadi" />
+          <ScalarProperty Name="urunid" ColumnName="urunid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teklif">
+      <EntityTypeMapping TypeName="qrpandemenu_Model.teklif">
+        <MappingFragment StoreEntitySet="teklif">
+          <ScalarProperty Name="ifread" ColumnName="ifread" />
+          <ScalarProperty Name="mesaj" ColumnName="mesaj" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="isim" ColumnName="isim" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

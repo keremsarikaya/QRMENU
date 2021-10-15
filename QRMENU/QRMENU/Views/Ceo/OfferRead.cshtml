@@ -1,0 +1,21 @@
+﻿
+@model QRMENU.Models.teklif
+
+@{
+    ViewBag.Title = "OfferRead";
+    Layout = "~/Views/Shared/_Panel.cshtml";
+}
+
+    <div class="container-fluid">
+        <h4>İsim Soyisim:</h4>
+        <p>@Model.isim</p>
+        <h4>E-Mail:</h4>
+        <p>@Model.email</p>
+        <h4>Telefon:</h4>
+        <p>@Model.tel</p>
+        <h4>Mesaj:</h4>
+        <p>@Model.mesaj</p>
+        <a href="/readed/@Model.id" class="btn btn-success">Okundu olarak işaretle</a>
+    </div>
+
+

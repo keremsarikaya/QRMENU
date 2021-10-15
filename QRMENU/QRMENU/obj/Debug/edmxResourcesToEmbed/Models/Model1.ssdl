@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="qrpandemenu_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="isim" Type="nvarchar" MaxLength="50" />
+    <Property Name="soyisim" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_branch" Type="bit" />
+    <Property Name="user_pay" Type="bit" />
+  </EntityType>
+  <EntityType Name="ceolar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="kategori_resim">
+    <Key>
+      <PropertyRef Name="k_resim_id" />
+    </Key>
+    <Property Name="k_resim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="k_resimad" Type="nvarchar(max)" />
+    <Property Name="k_durum" Type="bit" />
+    <Property Name="kategori_id" Type="int" />
+  </EntityType>
+  <EntityType Name="kategoriler">
+    <Key>
+      <PropertyRef Name="katid" />
+    </Key>
+    <Property Name="katid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="katadi" Type="nvarchar" MaxLength="50" />
+    <Property Name="rest_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="resim">
+    <Key>
+      <PropertyRef Name="resimid" />
+    </Key>
+    <Property Name="resimid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resimad" Type="nvarchar(max)" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="urunid" Type="int" />
+  </EntityType>
+  <EntityType Name="restaurant">
+    <Key>
+      <PropertyRef Name="sube_id" />
+    </Key>
+    <Property Name="sube_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sube_adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="sube_adres" Type="nvarchar" MaxLength="50" />
+    <Property Name="sube_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="sube_masa" Type="nvarchar" MaxLength="10" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="subeLogo">
+    <Key>
+      <PropertyRef Name="logoid" />
+    </Key>
+    <Property Name="logoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="logoad" Type="nvarchar(max)" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="subeid" Type="int" />
+  </EntityType>
+  <EntityType Name="urunler">
+    <Key>
+      <PropertyRef Name="urunid" />
+    </Key>
+    <Property Name="urunid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="urunadi" Type="nvarchar(max)" />
+    <Property Name="urunfiyat" Type="nvarchar" MaxLength="10" />
+    <Property Name="urunaciklama" Type="nvarchar(max)" />
+    <Property Name="kategoriid" Type="int" Nullable="false" />
+    <Property Name="rest_id" Type="int" />
+    <Property Name="use_id" Type="int" />
+  </EntityType>
+  <EntityType Name="teklif">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="isim" Type="nvarchar" MaxLength="100" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="tel" Type="nvarchar" MaxLength="20" />
+    <Property Name="mesaj" Type="nvarchar(max)" />
+    <Property Name="ifread" Type="bit" />
+  </EntityType>
+  <Association Name="FK_kategori_resim_kategoriler">
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="kategori_resim" Type="Self.kategori_resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="katid" />
+      </Principal>
+      <Dependent Role="kategori_resim">
+        <PropertyRef Name="kategori_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kategoriler_admin">
+    <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="kategoriler">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kategoriler_restaurant">
+    <End Role="restaurant" Type="Self.restaurant" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="kategoriler">
+        <PropertyRef Name="rest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resim_urunler">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="resim" Type="Self.resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunid" />
+      </Principal>
+      <Dependent Role="resim">
+        <PropertyRef Name="urunid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_restaurant_admin">
+    <End Role="admin" Type="Self.admin" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="restaurant" Type="Self.restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="restaurant">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subeLogo_restaurant">
+    <End Role="restaurant" Type="Self.restaurant" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="subeLogo" Type="Self.subeLogo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="subeLogo">
+        <PropertyRef Name="subeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_admin">
+    <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="use_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_kategoriler">
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="katid" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="kategoriid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_restaurant">
+    <End Role="restaurant" Type="Self.restaurant" Multiplicity="0..1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="rest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="qrpandemenu_ModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ceolar" EntityType="Self.ceolar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kategori_resim" EntityType="Self.kategori_resim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kategoriler" EntityType="Self.kategoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resim" EntityType="Self.resim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="restaurant" EntityType="Self.restaurant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subeLogo" EntityType="Self.subeLogo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="urunler" EntityType="Self.urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teklif" EntityType="Self.teklif" Schema="qrpandemenu" store:Type="Tables" />
+    <AssociationSet Name="FK_kategori_resim_kategoriler" Association="Self.FK_kategori_resim_kategoriler">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="kategori_resim" EntitySet="kategori_resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kategoriler_admin" Association="Self.FK_kategoriler_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="kategoriler" EntitySet="kategoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kategoriler_restaurant" Association="Self.FK_kategoriler_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="kategoriler" EntitySet="kategoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resim_urunler" Association="Self.FK_resim_urunler">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="resim" EntitySet="resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_restaurant_admin" Association="Self.FK_restaurant_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="restaurant" EntitySet="restaurant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subeLogo_restaurant" Association="Self.FK_subeLogo_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="subeLogo" EntitySet="subeLogo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_admin" Association="Self.FK_urunler_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_kategoriler" Association="Self.FK_urunler_kategoriler">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_restaurant" Association="Self.FK_urunler_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

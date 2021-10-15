@@ -1,0 +1,37 @@
+﻿
+@model QRMENU.Models.kategoriler
+
+@{
+    ViewBag.Title = "CatAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <form class="form-group" method="post" action="/Admin/CatAdd" enctype="multipart/form-data">
+
+        @Html.AntiForgeryToken()
+        @*<div>
+            <label>Kategori Adı</label>
+            <input type="text" class="form-control" name="kategoriad" />
+        </div>*@
+        <div>
+            <label>Kategori Adı</label>
+            @Html.TextBoxFor(m => m.katadi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.katadi, "", new { @style = "color:red" })
+        </div>
+
+        <div style="margin-top:15px">
+            <label>Şube Seçiniz</label>
+            @Html.DropDownListFor(m => m.restaurant.sube_id, (List<SelectListItem>)ViewBag.restaurant, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Kategori Resmi</label>
+            <input type="file" name="catimg" class="form-control"  required=""/>
+        </div>
+        <div style="margin-top:15px">
+            <button type="submit" class="btn btn-info">Kategori Ekle</button>
+        </div>
+    </form>
+
+
+

@@ -1,0 +1,78 @@
+﻿
+@using QRMENU.Models
+@model List<teklif>
+
+@{
+    ViewBag.Title = "OfferList";
+    Layout = "~/Views/Shared/_Panel.cshtml";
+}
+
+    <div class="container-fluid">
+        <h1 class="mt-4">Teklifler</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Teklif İçin Başvuranlar</li>
+        </ol>
+        @*<div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Ödeme Yapanlar</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i>25</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">Ödeme Yapmayanlar</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>İsim Soyisim</th>
+                                <th>E-Mail</th>
+                                <th>Telefon</th>
+                                <th>Mesaj</th>
+                                <th>Okundumu</th>
+                                <th>Oku</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.id</td>
+                                    <td>@item.isim</td>
+                                    <td>@item.email</td>
+                                    <td>@item.tel</td>
+                                    <td>@item.mesaj</td>
+                                    @if (item.ifread == false)
+                                    {
+                                        <td><i class="fas fa-trash" style="color:red"></i></td>
+                                    }
+                                    else
+                                    {
+                                        <td><i class="fas fa-check" style="color:green"></i></td>
+                                    }
+                                    <td><a href="/offerread/@item.id" class="btn btn-success">Oku</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+

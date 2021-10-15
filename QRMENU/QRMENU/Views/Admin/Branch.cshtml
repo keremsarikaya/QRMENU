@@ -1,0 +1,82 @@
+﻿
+@using QRMENU.Models
+@model List<restaurant>
+
+@{
+    ViewBag.Title = "Branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["branchsuccess"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Şube başarıyla oluşturuldu',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["brancerror"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire("Hata", "Sadece 1 adet şube oluşturabilirsiniz.", "error");
+    </script>
+}
+@if (TempData["branchpay"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire("Hata", "Şube oluşturmak için lütfen ödeme yapınız.", "error");
+    </script>
+}
+
+
+<div class="card shadow col-12">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Şubeler</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Şube ID</th>
+                        <th>Şube Adı</th>
+                        <th>Şube Adresi</th>
+                        <th>Şube Telefonu</th>
+                        <th>Şube Masa</th>
+                        <th>Şube Sahibi</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.sube_id</td>
+                            <td>@item.sube_adi</td>
+                            <td>@item.sube_adres</td>
+                            <td>@item.sube_tel</td>
+                            <td>@item.sube_masa</td>
+                            <td>@item.admin.username</td>
+                            <td>
+
+                                @Html.ActionLink("Önizleme", "Category", "Home", new { id = item.sube_id, deger = Seo.AdresDuzenle(item.sube_adi) }, new { @class = "btn btn-danger", @target = "_blank" })
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<br />
+<a href="/subeekle" class="btn btn-primary">Şube Ekle</a>
+

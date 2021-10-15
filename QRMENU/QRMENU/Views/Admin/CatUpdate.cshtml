@@ -1,0 +1,25 @@
+﻿
+@model QRMENU.Models.kategoriler
+
+@{
+    ViewBag.Title = "CatUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("CUpdate", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.katid)
+        @Html.TextBoxFor(m => m.katid, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.katadi)
+        @Html.TextBoxFor(m => m.katadi, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-warning">KATEGORİ GÜNCELLE</button>
+    </div>
+}
+
+

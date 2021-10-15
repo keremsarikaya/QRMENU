@@ -1,0 +1,110 @@
+﻿
+
+@using QRMENU.Models
+@model List<urunler>
+
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["productadd"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Ürün başarıyla eklendi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["productupdate"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Ürün başarıyla güncellendi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["prodelete"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Ürün başarıyla silindi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["prodpay"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire("Hata", "Ürün eklemek için lütfen ödeme yapınız.", "error");
+    </script>
+}
+
+<div class="card shadow col-12">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ürünler</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Ürün ID</th>
+                        <th>Ürün Adı</th>
+                        <th>Ürün Fiyatı</th>
+                        <th>Ürün Açıklaması</th>
+                        <th>Ürün Kategorisi</th>
+                        <th>Ürün Şubesi</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.urunid</td>
+                            <td>@item.urunadi</td>
+                            <td>@item.urunfiyat ₺</td>
+                            <td>@item.urunaciklama</td>
+                            <td>@item.kategoriler.katadi</td>
+                            <td>@item.restaurant.sube_adi</td>
+                            <td>
+                                <a href="/urunguncelle/@item.urunid" class="btn btn-success btn-circle">
+                                    <i class="fas fa-check"></i>
+                                </a>
+                            </td>
+                            <td>
+                                @Html.AntiForgeryToken()
+                                <a href="/urunsil/@item.urunid" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<a href="/urunekle" class="btn btn-primary">Ürün Ekle</a>

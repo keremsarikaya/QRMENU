@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="qrpandemenu_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="qrpandemenu_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="qrpandemenu_Model.admin" />
+    <EntitySet Name="ceolar" EntityType="qrpandemenu_Model.ceolar" />
+    <EntitySet Name="kategori_resim" EntityType="qrpandemenu_Model.kategori_resim" />
+    <EntitySet Name="kategoriler" EntityType="qrpandemenu_Model.kategoriler" />
+    <EntitySet Name="resim" EntityType="qrpandemenu_Model.resim" />
+    <EntitySet Name="restaurant" EntityType="qrpandemenu_Model.restaurant" />
+    <EntitySet Name="subeLogo" EntityType="qrpandemenu_Model.subeLogo" />
+    <EntitySet Name="urunler" EntityType="qrpandemenu_Model.urunler" />
+    <EntitySet Name="teklif" EntityType="qrpandemenu_Model.teklif" />
+    <AssociationSet Name="FK_kategoriler_admin" Association="qrpandemenu_Model.FK_kategoriler_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="kategoriler" EntitySet="kategoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_restaurant_admin" Association="qrpandemenu_Model.FK_restaurant_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="restaurant" EntitySet="restaurant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_admin" Association="qrpandemenu_Model.FK_urunler_admin">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kategori_resim_kategoriler" Association="qrpandemenu_Model.FK_kategori_resim_kategoriler">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="kategori_resim" EntitySet="kategori_resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_kategoriler_restaurant" Association="qrpandemenu_Model.FK_kategoriler_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="kategoriler" EntitySet="kategoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_kategoriler" Association="qrpandemenu_Model.FK_urunler_kategoriler">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resim_urunler" Association="qrpandemenu_Model.FK_resim_urunler">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="resim" EntitySet="resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subeLogo_restaurant" Association="qrpandemenu_Model.FK_subeLogo_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="subeLogo" EntitySet="subeLogo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_restaurant" Association="qrpandemenu_Model.FK_urunler_restaurant">
+      <End Role="restaurant" EntitySet="restaurant" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="soyisim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_branch" Type="Boolean" />
+    <Property Name="user_pay" Type="Boolean" />
+    <NavigationProperty Name="kategoriler" Relationship="qrpandemenu_Model.FK_kategoriler_admin" FromRole="admin" ToRole="kategoriler" />
+    <NavigationProperty Name="restaurant" Relationship="qrpandemenu_Model.FK_restaurant_admin" FromRole="admin" ToRole="restaurant" />
+    <NavigationProperty Name="urunler" Relationship="qrpandemenu_Model.FK_urunler_admin" FromRole="admin" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="ceolar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="kategori_resim">
+    <Key>
+      <PropertyRef Name="k_resim_id" />
+    </Key>
+    <Property Name="k_resim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="k_resimad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="k_durum" Type="Boolean" />
+    <Property Name="kategori_id" Type="Int32" />
+    <NavigationProperty Name="kategoriler" Relationship="qrpandemenu_Model.FK_kategori_resim_kategoriler" FromRole="kategori_resim" ToRole="kategoriler" />
+  </EntityType>
+  <EntityType Name="kategoriler">
+    <Key>
+      <PropertyRef Name="katid" />
+    </Key>
+    <Property Name="katid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="katadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rest_id" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="admin" Relationship="qrpandemenu_Model.FK_kategoriler_admin" FromRole="kategoriler" ToRole="admin" />
+    <NavigationProperty Name="kategori_resim" Relationship="qrpandemenu_Model.FK_kategori_resim_kategoriler" FromRole="kategoriler" ToRole="kategori_resim" />
+    <NavigationProperty Name="restaurant" Relationship="qrpandemenu_Model.FK_kategoriler_restaurant" FromRole="kategoriler" ToRole="restaurant" />
+    <NavigationProperty Name="urunler" Relationship="qrpandemenu_Model.FK_urunler_kategoriler" FromRole="kategoriler" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="resim">
+    <Key>
+      <PropertyRef Name="resimid" />
+    </Key>
+    <Property Name="resimid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="resimad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="urunid" Type="Int32" />
+    <NavigationProperty Name="urunler" Relationship="qrpandemenu_Model.FK_resim_urunler" FromRole="resim" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="restaurant">
+    <Key>
+      <PropertyRef Name="sube_id" />
+    </Key>
+    <Property Name="sube_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sube_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sube_adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sube_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sube_masa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="admin" Relationship="qrpandemenu_Model.FK_restaurant_admin" FromRole="restaurant" ToRole="admin" />
+    <NavigationProperty Name="kategoriler" Relationship="qrpandemenu_Model.FK_kategoriler_restaurant" FromRole="restaurant" ToRole="kategoriler" />
+    <NavigationProperty Name="subeLogo" Relationship="qrpandemenu_Model.FK_subeLogo_restaurant" FromRole="restaurant" ToRole="subeLogo" />
+    <NavigationProperty Name="urunler" Relationship="qrpandemenu_Model.FK_urunler_restaurant" FromRole="restaurant" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="subeLogo">
+    <Key>
+      <PropertyRef Name="logoid" />
+    </Key>
+    <Property Name="logoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="logoad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="subeid" Type="Int32" />
+    <NavigationProperty Name="restaurant" Relationship="qrpandemenu_Model.FK_subeLogo_restaurant" FromRole="subeLogo" ToRole="restaurant" />
+  </EntityType>
+  <EntityType Name="urunler">
+    <Key>
+      <PropertyRef Name="urunid" />
+    </Key>
+    <Property Name="urunid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="urunfiyat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="urunaciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kategoriid" Type="Int32" Nullable="false" />
+    <Property Name="rest_id" Type="Int32" />
+    <Property Name="use_id" Type="Int32" />
+    <NavigationProperty Name="admin" Relationship="qrpandemenu_Model.FK_urunler_admin" FromRole="urunler" ToRole="admin" />
+    <NavigationProperty Name="kategoriler" Relationship="qrpandemenu_Model.FK_urunler_kategoriler" FromRole="urunler" ToRole="kategoriler" />
+    <NavigationProperty Name="resim" Relationship="qrpandemenu_Model.FK_resim_urunler" FromRole="urunler" ToRole="resim" />
+    <NavigationProperty Name="restaurant" Relationship="qrpandemenu_Model.FK_urunler_restaurant" FromRole="urunler" ToRole="restaurant" />
+  </EntityType>
+  <EntityType Name="teklif">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="isim" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ifread" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_kategoriler_admin">
+    <End Type="qrpandemenu_Model.admin" Role="admin" Multiplicity="0..1" />
+    <End Type="qrpandemenu_Model.kategoriler" Role="kategoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="kategoriler">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_restaurant_admin">
+    <End Type="qrpandemenu_Model.admin" Role="admin" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.restaurant" Role="restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="restaurant">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_admin">
+    <End Type="qrpandemenu_Model.admin" Role="admin" Multiplicity="0..1" />
+    <End Type="qrpandemenu_Model.urunler" Role="urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="use_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kategori_resim_kategoriler">
+    <End Type="qrpandemenu_Model.kategoriler" Role="kategoriler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.kategori_resim" Role="kategori_resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="katid" />
+      </Principal>
+      <Dependent Role="kategori_resim">
+        <PropertyRef Name="kategori_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_kategoriler_restaurant">
+    <End Type="qrpandemenu_Model.restaurant" Role="restaurant" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.kategoriler" Role="kategoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="kategoriler">
+        <PropertyRef Name="rest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_kategoriler">
+    <End Type="qrpandemenu_Model.kategoriler" Role="kategoriler" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.urunler" Role="urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="katid" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="kategoriid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resim_urunler">
+    <End Type="qrpandemenu_Model.urunler" Role="urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.resim" Role="resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urunid" />
+      </Principal>
+      <Dependent Role="resim">
+        <PropertyRef Name="urunid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subeLogo_restaurant">
+    <End Type="qrpandemenu_Model.restaurant" Role="restaurant" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="qrpandemenu_Model.subeLogo" Role="subeLogo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="subeLogo">
+        <PropertyRef Name="subeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_restaurant">
+    <End Type="qrpandemenu_Model.restaurant" Role="restaurant" Multiplicity="0..1" />
+    <End Type="qrpandemenu_Model.urunler" Role="urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="restaurant">
+        <PropertyRef Name="sube_id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="rest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

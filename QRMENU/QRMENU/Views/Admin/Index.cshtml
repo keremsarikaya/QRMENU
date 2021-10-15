@@ -1,0 +1,105 @@
+﻿
+
+@using QRMENU.Models
+@model List<kategoriler>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@if (TempData["cataddsuccess"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Kategori başarıyla eklendi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["catupdate"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Kategori başarıyla güncellendi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["catdelete"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Kategori başarıyla silindi',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+@if (TempData["catpay"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        Swal.fire("Hata", "Kategori eklemek için lütfen ödeme yapınız.", "error");
+    </script>
+}
+
+<div class="card shadow col-12">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Kategoriler</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Kategori ID</th>
+                        <th>Kategori Adı</th>
+                        <th>Kategori Şube</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.katid</td>
+                            <td>@item.katadi</td>
+                            <td>@item.restaurant.sube_adi</td>
+                            <td>
+                                <a href="/kategoriguncelle/@item.katid" class="btn btn-success btn-circle">
+                                    <i class="fas fa-check"></i>
+                                </a>
+                            </td>
+                            <td>
+                                @Html.AntiForgeryToken()
+                                <a href="~/kategorisil/@item.katid" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<a href="/kategoriekle" class="btn btn-primary">Kategori Ekle</a>

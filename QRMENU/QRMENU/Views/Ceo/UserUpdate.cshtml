@@ -1,0 +1,44 @@
+﻿
+@model QRMENU.Models.admin
+
+@{
+    ViewBag.Title = "UserUpdate";
+    Layout = "~/Views/Shared/_Panel.cshtml";
+}
+
+@using (Html.BeginForm("UUpdate", "Ceo", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.id)
+        @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.username)
+        @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.password)
+        @Html.TextBoxFor(m => m.password, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.user_tel)
+        @Html.TextBoxFor(m => m.user_tel, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.user_mail)
+        @Html.TextBoxFor(m => m.user_mail, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.isim)
+        @Html.TextBoxFor(m => m.isim, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.soyisim)
+        @Html.TextBoxFor(m => m.soyisim, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.user_branch)
+        @Html.TextBoxFor(m => m.user_branch, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.user_pay)
+        @Html.TextBoxFor(m => m.user_pay, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-warning">KULLANICI GÜNCELLE</button>
+    </div>
+}
+

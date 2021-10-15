@@ -1,0 +1,54 @@
+﻿
+@using QRMENU.Models
+@model List<kategoriler>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<section class="section-ourmenu bg2-pattern p-t-115 p-b-120">
+    <div class="container">
+        <div class="title-section-ourmenu t-center m-b-22">
+            <h6 class="tit5 t-center m-t-2">
+                Kategoriler
+            </h6>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12">
+                            <!-- Item our menu -->
+                            <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
+                                @if (item.kategori_resim != null)
+                                {
+                                    <img src="~/resimler/kategori/@item.kategori_resim.First().k_resimad" alt="IMG-MENU">
+
+                                }
+                                else
+                                {
+                                    <img src="~/resimler/resimyok.png" alt="IMG-MENU">
+                                }
+
+
+                                <!-- Button2 -->
+                                @*<a href="/Home/CatProd/@item.katid" class="btn2 flex-c-m txt5 ab-c-m size7">
+
+                                    @item.katadi
+                                </a>*@
+                                @Html.ActionLink(item.katadi, "CatProd", "Home", new { id = item.katid, deger = Seo.AdresDuzenle(item.katadi) }, new { @class = "btn2 flex-c-m txt5 ab-c-m size7"})
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
